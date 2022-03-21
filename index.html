@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>rad radio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/chicagoflf" type="text/css"/>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/chicagoflf" type="text/css" />
+    <script type="module" src="./comments.js" defer></script>
     <!-- webstuff: sander van de vijver -->
-</head>
-<body>
+  </head>
+  <body>
     <main>
-        <div id="twitch-embed"></div>
-        <div class="info">
-            <p>Rad Radio is een week lang radio van op Sint Lucas, door Sint Lucas, voor Sint Lucas Antwerpen!
-                <br>
-                Tune in! Starting tuesday at noon.
-            </p>    
-        </div>
+      <div id="twitch-embed"></div>
+      <div class="info">
+        <p>
+          Rad Radio is een week lang radio van op Sint Lucas, door Sint Lucas, voor Sint Lucas Antwerpen!
+          <br />
+          Tune in! Starting tuesday at noon.
+        </p>
+      </div>
+      <section class="comments">
+        <h1>Opmerkingen</h1>
+        <p>Zelf ook deelnemen? Stuur een SMS naar 0460/258.666</p>
+        <div class="comments-list"></div>
+      </section>
     </main>
     <!-- Add a placeholder for the Twitch embed -->
 
@@ -31,8 +38,8 @@
         height: 480,
         channel: "radicalradio",
         parent: ["radradio.online", "www.radradio.online"],
-        layout: "video"
+        layout: "video",
       });
     </script>
-</body>
+  </body>
 </html>
