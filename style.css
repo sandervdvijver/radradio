@@ -4,7 +4,9 @@ html {
 body {
     /* background-color: black; */
     text-align: center;
-    font-family: monospace;
+    font-family: 'ChicagoFLFRegular', 'monospace'; 
+    font-weight: normal; 
+    font-style: normal; 
     /* color: white; */
     font-size: 1rem;
     line-height: 1.5rem;
