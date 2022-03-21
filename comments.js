@@ -37,16 +37,25 @@ async function getComments(db) {
 }
 
 async function loadComments() {
-  const comments = await getComments(db);
   const $comments = document.querySelector(".comments-list");
   $comments.innerHTML = "";
-  for (const comment of comments) {
-    $comments.innerHTML += `
+  try {
+    const comments = await getComments(db);
+    if (comments.length === 0) {
+      $comments.innerHTML = "<p class='comments-loading'>Geen opmerkingen.</p>";
+      return;
+    }
+    for (const comment of comments) {
+      $comments.innerHTML += `
       <div class="comment">
       <div class="comment-date">${formatDate(comment.timestamp)}</div>
         <div class="comment-body">${comment.body}</div>
       </div>
     `;
+    }
+  } catch (e) {
+    console.error(e);
+    $comments.innerHTML = "<p class='comments-loading'>Er ging iets mis met het laden van de opmerkingen.</p>";
   }
 }
 
