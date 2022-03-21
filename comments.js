@@ -1,9 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-} from "https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore-lite.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore-lite.js";
 import { formatDistanceToNow } from "https://cdn.skypack.dev/date-fns";
 
 const firebaseConfig = {
@@ -34,7 +30,7 @@ async function getComments(db) {
 async function loadComments() {
   const comments = await getComments(db);
   const $comments = document.querySelector(".comments");
-  for (const comment of comments) {
+  for (const comment of comments.reverse()) {
     $comments.innerHTML += `
       <div class="comment">
       <div class="comment-date">${formatDate(comment.timestamp)}</div>
