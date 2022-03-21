@@ -1,5 +1,11 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore-lite.js";
+import {
+  getFirestore,
+  collection,
+  query,
+  orderBy,
+  getDocs,
+} from "https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore-lite.js";
 import { formatDistanceToNow } from "https://cdn.skypack.dev/date-fns";
 
 const firebaseConfig = {
@@ -21,16 +27,20 @@ function formatDate(ts) {
 
 // Get a list of cities from your database
 async function getComments(db) {
-  const commentsCollection = collection(db, "comments");
-  const commentsSnapshot = await getDocs(commentsCollection);
+  const commentsRef = collection(db, "comments");
+  const q = await query(commentsRef, orderBy("timestamp", "desc"));
+  const commentsSnapshot = await getDocs(q);
+  // console.log(commentsSnapshot);
+
   const comments = commentsSnapshot.docs.map((doc) => doc.data());
   return comments;
 }
 
 async function loadComments() {
   const comments = await getComments(db);
-  const $comments = document.querySelector(".comments");
-  for (const comment of comments.reverse()) {
+  const $comments = document.querySelector(".comments-list");
+  $comments.innerHTML = "";
+  for (const comment of comments) {
     $comments.innerHTML += `
       <div class="comment">
       <div class="comment-date">${formatDate(comment.timestamp)}</div>
@@ -41,3 +51,4 @@ async function loadComments() {
 }
 
 loadComments();
+setInterval(loadComments, 60 * 1000);
